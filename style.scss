@@ -1,0 +1,202 @@
+@mixin bottom_border($color) {
+  border-bottom: 4px solid $color;
+}
+
+//themes
+
+.theme-1 {
+  --toggle_place: flex-start;
+  // background
+  --main_background: hsl(222, 26%, 31%);
+  --toggle_background_keypad_background: hsl(223, 31%, 20%);
+  --screen_background: hsl(224, 36%, 15%);
+  //keys
+  --key_background: hsl(225, 21%, 49%);
+  --key_shadow: hsl(224, 28%, 35%);
+
+  --key_background_toggle: hsl(6, 63%, 50%);
+  --key_shadow_toggle: hsl(6, 70%, 34%);
+
+  --key_background_normal: hsl(30, 25%, 89%);
+  --key_shadow_normal: hsl(28, 16%, 65%);
+  //text
+  --text_1: hsl(221, 14%, 31%);
+  --text_2: hsl(0, 0%, 100%);
+  --text_3: hsl(0, 0%, 100%);
+  --text_4: hsl(0, 0%, 100%);
+}
+
+.theme-2 {
+  --toggle_place: center;
+  // background
+  --main_background: hsl(0, 0%, 90%);
+  --toggle_background_keypad_background: hsl(0, 5%, 81%);
+  --screen_background: hsl(0, 0%, 93%);
+  //keys
+  --key_background: hsl(185, 42%, 37%);
+  --key_shadow: hsl(185, 58%, 25%);
+
+  --key_background_toggle: hsl(25, 98%, 40%);
+  --key_shadow_toggle: hsl(25, 99%, 27%);
+
+  --key_background_normal: hsl(45, 7%, 89%);
+  --key_shadow_normal: hsl(35, 11%, 61%);
+  //text
+  --text_1: hsl(60, 10%, 19%);
+  --text_2: hsl(60, 10%, 19%);
+  --text_3: hsl(0, 0%, 100%);
+  --text_4: hsl(0, 0%, 100%);
+}
+
+.theme-3 {
+  --toggle_place: flex-end;
+  // background
+  --main_background: hsl(268, 75%, 9%);
+  --toggle_background_keypad_background: hsl(268, 71%, 12%);
+  --screen_background: hsl(268, 71%, 12%);
+  //keys
+  --key_background: hsl(281, 89%, 26%);
+  --key_shadow: hsl(285, 91%, 52%);
+
+  --key_background_toggle: hsl(176, 100%, 44%);
+  --key_shadow_toggle: hsl(177, 92%, 70%);
+
+  --key_background_normal: hsl(268, 47%, 21%);
+  --key_shadow_normal: hsl(290, 70%, 36%);
+  //text
+  --text_1: hsl(52, 100%, 62%);
+  --text_2: hsl(52, 100%, 62%);
+  --text_3: hsl(0, 0%, 100%);
+  --text_4: hsl(198, 20%, 13%);
+}
+
+//reset
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+//general styles
+body {
+  min-height: 100vh;
+  background-color: var(--main_background);
+  font-family: "Spartan", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+header,
+.screen {
+  color: var(--text_2);
+}
+
+//main
+main {
+  width: clamp(300px, 80%, 400px);
+  margin: 2rem auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+//header
+
+header {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+h1 {
+  margin-right: auto;
+}
+
+.themes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.themes-numbers {
+  font-size: 0.8rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+//theme toggle
+
+.theme-toggle {
+  cursor: pointer;
+  background-color: var(--toggle_background_keypad_background);
+  justify-content: var(--toggle_place);
+  display: flex;
+  padding: 4px;
+  border-radius: 30px;
+}
+
+.checkmark {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background-color: var(--key_background_toggle);
+  border-radius: 50%;
+}
+
+//screen
+
+.screen {
+  font-size: 2rem;
+  background-color: var(--screen_background);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: right;
+}
+
+//keypad
+.keypad {
+  font-size: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(50px, 1fr));
+  grid-template-rows: repeat(5, 60px);
+  gap: 1rem;
+  background-color: var(--toggle_background_keypad_background);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.normal-btn {
+  color: var(--text_1);
+  background-color: var(--key_background_normal);
+  @include bottom_border(var(--key_shadow_normal));
+}
+
+.del-reset-btn {
+  font-size: 1rem;
+  color: var(--text_3);
+  background-color: var(--key_background);
+  @include bottom_border(var(--key_shadow));
+}
+
+.reset-btn {
+  grid-column: 1/3;
+}
+
+.equal-btn {
+  font-size: 1rem;
+  color: var(--text_4);
+  background-color: var(--key_background_toggle);
+  @include bottom_border(var(--key_shadow_toggle));
+  grid-column: 3/5;
+}
